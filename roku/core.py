@@ -206,7 +206,7 @@ class Roku(object):
     def launch(self, app):
         if app.roku and app.roku != self:
             raise RokuException('this app belongs to another Roku')
-        return self._post('/launch/%s' % app.id, params={'contentID': app.id})
+        return self._post('/launch/%s' % app.id)
 
     def store(self, app):
         return self._post('/launch/11', params={'contentID': app.id})
