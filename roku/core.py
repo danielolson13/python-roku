@@ -69,15 +69,16 @@ class Application(object):
 
 class DeviceInfo(object):
 
-    def __init__(self, modelname, modelnum, swversion, sernum):
+    def __init__(self, modelname, modelnum, swversion, sernum, userdevicename):
         self.modelname = modelname
         self.modelnum = modelnum
         self.swversion = swversion
         self.sernum = sernum
+        self.userdevicename = userdevicename
 
     def __repr__(self):
-        return ('<DeviceInfo: %s-%s, SW v%s, Ser# %s>' %
-                (self.modelname, self.modelnum, self.swversion, self.sernum))
+        return ('<DeviceInfo: %s-%s, SW v%s, Ser# %s, Name %s>' %
+                (self.modelname, self.modelnum, self.swversion, self.sernum, self.userdevicename))
 
 
 class Roku(object):
@@ -192,7 +193,8 @@ class Roku(object):
                 '.',
                 root.find('software-build').text
             ]),
-            sernum=root.find('serial-number').text
+            sernum=root.find('serial-number').text,
+            userdevicename=root.find('user-device-name').text
         )
         return dinfo
 
